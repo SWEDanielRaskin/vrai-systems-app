@@ -894,45 +894,23 @@ def send_manual_sms():
 
 @app.route('/health', methods=['GET'])
 def health_check():
-    """Health check endpoint with business hours status - OPTIMIZED"""
-    try:
-        # Get override setting from database (single query)
-        override = db.get_setting('business_hours_override') or ''
-        
-        # Determine business hours status based on override only (fast)
-        if override == 'business':
-            is_business_hours = True
-            mode = 'business'
-        elif override == 'after_hours':
-            is_business_hours = False
-            mode = 'after_hours'
-        else:
-            # Only do timezone calculation if no override
-            is_business_hours = get_business_hours_status()
-            mode = 'business_hours' if is_business_hours else 'after_hours'
-        
-        # Skip active calls count for speed (not critical for health check)
-        status = {
-            'status': 'healthy',
-            'business_hours': is_business_hours,
-            'mode': mode,
-            'override': override,
-            'active_calls_tracked': 0,  # Skip this for speed
-            'timestamp': datetime.now().isoformat()
-        }
-        
-        return Response(json.dumps(status), mimetype='application/json')
-    except Exception as e:
-        logger.error(f"Health check error: {str(e)}")
-        # Return basic health status if there's an error
-        return Response(json.dumps({
-            'status': 'healthy',
-            'business_hours': False,
-            'mode': 'after_hours',
-            'override': '',
-            'active_calls_tracked': 0,
-            'timestamp': datetime.now().isoformat()
-        }), mimetype='application/json')
+    """Health check endpoint with business hours status"""
+    is_business_hours = get_business_hours_status()
+    active_calls = call_tracker.get_active_calls_count()
+    
+    # Get override setting from database
+    override = db.get_setting('business_hours_override') or ''
+    
+    status = {
+        'status': 'healthy',
+        'business_hours': is_business_hours,
+        'mode': 'business_hours' if is_business_hours else 'after_hours',
+        'override': override,
+        'active_calls_tracked': active_calls,
+        'timestamp': datetime.now().isoformat()
+    }
+    
+    return Response(json.dumps(status), mimetype='application/json')
 
 @app.route('/test-connection', methods=['GET'])
 def test_connection():
@@ -950,14 +928,6 @@ def test_connection():
             'status': 'error',
             'error': str(e)
         }), 500
-
-@app.route('/ping', methods=['GET'])
-def ping():
-    """Ultra-fast ping endpoint for testing connectivity"""
-    return jsonify({
-        'status': 'pong',
-        'timestamp': datetime.now().isoformat()
-    })
 
 @app.route('/debug/message-cache', methods=['GET'])
 def debug_message_cache():
