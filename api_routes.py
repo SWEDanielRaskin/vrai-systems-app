@@ -306,8 +306,12 @@ def get_recent_calls():
         # FIXED: Use consistent 24-hour tracking window
         today_start, today_end = get_tracking_window()
         
-        # Get today's calls from database
-        calls_data = db.get_calls_by_date_range(today_start.isoformat(), today_end.isoformat())
+        # Get today's calls from database with timeout protection
+        try:
+            calls_data = db.get_calls_by_date_range(today_start.isoformat(), today_end.isoformat())
+        except Exception as e:
+            logger.error(f"Database error in get_recent_calls: {str(e)}")
+            calls_data = []
         
         # Calculate statistics
         total_calls = len(calls_data)
@@ -473,8 +477,12 @@ def get_recent_messages():
         # FIXED: Use consistent 24-hour tracking window
         today_start, today_end = get_tracking_window()
         
-        # Get today's message conversations from database
-        conversations_data = db.get_conversations_by_date_range(today_start.isoformat(), today_end.isoformat())
+        # Get today's message conversations from database with timeout protection
+        try:
+            conversations_data = db.get_conversations_by_date_range(today_start.isoformat(), today_end.isoformat())
+        except Exception as e:
+            logger.error(f"Database error in get_recent_messages: {str(e)}")
+            conversations_data = []
         
         # Calculate statistics
         total_conversations = len(conversations_data)
