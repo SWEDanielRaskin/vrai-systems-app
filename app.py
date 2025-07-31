@@ -874,30 +874,22 @@ def send_manual_sms():
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint with business hours status"""
-    try:
-        # Get business hours override from database
-        override = db.get_setting('business_hours_override')
-        
-        # Determine current business hours status
-        is_business_hours = get_business_hours_status()
-        
-        status = {
-            'status': 'healthy',
-            'timestamp': datetime.now().isoformat(),
-            'message': 'Flask app is running successfully',
-            'business_hours': is_business_hours,
-            'override': override if override else None,
-            'mode': 'business' if override == 'business' else ('after_hours' if override == 'after_hours' else 'actual')
-        }
-        
-        return Response(json.dumps(status), mimetype='application/json')
-    except Exception as e:
-        logger.error(f"Health check failed: {str(e)}")
-        return Response(json.dumps({
-            'status': 'error',
-            'error': str(e),
-            'timestamp': datetime.now().isoformat()
-        }), mimetype='application/json', status=500)
+    is_business_hours = get_business_hours_status()
+    active_calls = call_tracker.get_active_calls_count()
+    
+    # Get override setting from database
+    override = db.get_setting('business_hours_override') or ''
+    
+    status = {
+        'status': 'healthy',
+        'business_hours': is_business_hours,
+        'mode': 'business_hours' if is_business_hours else 'after_hours',
+        'override': override,
+        'active_calls_tracked': active_calls,
+        'timestamp': datetime.now().isoformat()
+    }
+    
+    return Response(json.dumps(status), mimetype='application/json')
 
 @app.route('/test-connection', methods=['GET'])
 def test_connection():
