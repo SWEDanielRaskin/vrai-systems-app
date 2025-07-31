@@ -67,4 +67,3 @@ websockets==12.0
 Werkzeug
 gunicorn
 wsproto
-aiohttp==3.9.1
