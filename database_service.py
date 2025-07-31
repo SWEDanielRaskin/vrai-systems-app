@@ -2205,12 +2205,96 @@ class DatabaseService:
             return None
 
     def update_message_template(self, template_type: str, **kwargs) -> bool:
-        """Update a message template"""
+        """Update a message template - create if doesn't exist"""
         try:
             conn = sqlite3.connect(self.db_file)
             cursor = conn.cursor()
             
-            # Build update query dynamically
+            # First check if template exists
+            cursor.execute('SELECT id FROM message_templates WHERE template_type = ?', (template_type,))
+            template_exists = cursor.fetchone() is not None
+            
+            if not template_exists:
+                # Create default template if it doesn't exist
+                logger.info(f"📝 Creating missing template: {template_type}")
+                default_templates = {
+                    '24hr_reminder': {
+                        'title': '24-Hour Reminder',
+                        'description': None,
+                        'message_content': "Hi {name}! Your {service} appointment is tomorrow at {time}. We're excited to see you! - Radiance MD Med Spa",
+                        'is_enabled': True,
+                        'max_chars': 160,
+                        'conditions': {'hours_in_advance': 30, 'hours_before_appointment': 24}
+                    },
+                    'thank_you_review': {
+                        'title': 'Thank You + Review',
+                        'description': None,
+                        'message_content': "Thanks for visiting Radiance MD Med Spa, {name}! We hope you loved your {service}! Leave us a review for 15% off your next visit: https://www.radiancemd.com/testimonials/ Code: REVIEW15",
+                        'is_enabled': True,
+                        'max_chars': 320,
+                        'conditions': {'hours_after_appointment': 1}
+                    },
+                    'appointment_confirmation': {
+                        'title': 'Appointment Confirmation',
+                        'description': 'This is sent when the customer books an appointment',
+                        'message_content': "Your {service} appointment with {specialist} is confirmed for {date} at {time}. Price: ${price}. Duration: {duration} minutes. See you then!",
+                        'is_enabled': True,
+                        'max_chars': 320,
+                        'conditions': {}
+                    },
+                    'cancellation_confirmation': {
+                        'title': 'Cancellation Confirmation',
+                        'description': 'This is sent when a customer cancels their appointment',
+                        'message_content': "Your {service} appointment on {date} at {time} has been cancelled. If you had a deposit, it will be refunded to your payment method. Please call us to reschedule if needed. Thank you!",
+                        'is_enabled': True,
+                        'max_chars': 320,
+                        'conditions': {}
+                    },
+                    'refund_notification': {
+                        'title': 'Refund Notification',
+                        'description': 'This is sent when a customer shows up for their appointment and their deposit is refunded',
+                        'message_content': "Great news! Your $50 show-up deposit has been refunded to your payment method. Thanks for keeping your appointment at Radiance MD Med Spa! 💫",
+                        'is_enabled': True,
+                        'max_chars': 160,
+                        'conditions': {}
+                    },
+                    'missed_call_notification': {
+                        'title': 'Missed Call Notification',
+                        'description': 'This is sent to the caller if the front desk misses their call',
+                        'message_content': "Hi! We missed your call to Radiance MD Med Spa. I'm here to help! How can I assist you today?",
+                        'is_enabled': True,
+                        'max_chars': 160,
+                        'conditions': {}
+                    }
+                }
+                
+                if template_type in default_templates:
+                    default = default_templates[template_type]
+                    now = datetime.now(self.timezone).isoformat()
+                    
+                    cursor.execute('''
+                        INSERT INTO message_templates 
+                        (template_type, title, description, message_content, is_enabled, max_chars, conditions, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        template_type,
+                        default['title'],
+                        default['description'],
+                        default['message_content'],
+                        default['is_enabled'],
+                        default['max_chars'],
+                        json.dumps(default['conditions']),
+                        now,
+                        now
+                    ))
+                    conn.commit()
+                    logger.info(f"✅ Created template: {template_type}")
+                else:
+                    logger.error(f"❌ Unknown template type: {template_type}")
+                    conn.close()
+                    return False
+            
+            # Now update the template
             update_fields = []
             values = []
             
@@ -2226,7 +2310,8 @@ class DatabaseService:
                     values.append(json.dumps(value))
             
             if not update_fields:
-                return False
+                conn.close()
+                return True  # No fields to update, consider it successful
             
             update_fields.append("updated_at = ?")
             values.append(datetime.now(self.timezone).isoformat())
@@ -2242,7 +2327,13 @@ class DatabaseService:
             conn.commit()
             conn.close()
             
-            return cursor.rowcount > 0
+            success = cursor.rowcount > 0
+            if success:
+                logger.info(f"✅ Updated template: {template_type}")
+            else:
+                logger.warning(f"⚠️ No rows updated for template: {template_type}")
+            
+            return success
             
         except Exception as e:
             logger.error(f"❌ Error updating message template {template_type}: {str(e)}")
