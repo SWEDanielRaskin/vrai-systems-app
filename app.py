@@ -134,7 +134,7 @@ sms_service = SMSService()
 db = DatabaseService(broadcast_event=broadcast_event)
 ai_receptionist = AIReceptionist(database_service=db)  # FIXED: Pass database service
 call_tracker = CallTrackingService()
-message_scheduler = MessageScheduler()
+message_scheduler = MessageScheduler(database_service=db)
 ai_summarizer = AISummarizer(database_service=db)  # NEW: Initialize AI summarizer with database service
 
 # Initialize appointment service with database
@@ -146,6 +146,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Initialize knowledge base service
 kb_service = KnowledgeBaseService(database_service=db)
+
+# Ensure scheduled messages database is initialized
+message_scheduler._init_database()
 
 # Utility to check allowed file extensions
 def allowed_file(filename):

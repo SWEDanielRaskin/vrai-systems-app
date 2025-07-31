@@ -1140,46 +1140,6 @@ def test_send_sms():
         logger.error(f"Error sending test SMS: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-@api_bp.route('/debug/database', methods=['GET'])
-def debug_database():
-    """Debug endpoint to inspect database tables"""
-    try:
-        import sqlite3
-        
-        conn = sqlite3.connect('radiance_md.db')
-        cursor = conn.cursor()
-        
-        # Get all tables
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-        tables = [row[0] for row in cursor.fetchall()]
-        
-        # Check specific tables
-        table_info = {}
-        for table in tables:
-            cursor.execute(f"SELECT COUNT(*) FROM {table}")
-            count = cursor.fetchone()[0]
-            
-            # Get schema for important tables
-            if table in ['message_templates', 'settings', 'customers', 'appointments']:
-                cursor.execute(f"PRAGMA table_info({table})")
-                columns = [row[1] for row in cursor.fetchall()]
-                table_info[table] = {
-                    'count': count,
-                    'columns': columns
-                }
-            else:
-                table_info[table] = {'count': count}
-        
-        conn.close()
-        
-        return jsonify({
-            'tables': table_info,
-            'total_tables': len(tables)
-        })
-        
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
 @api_bp.route('/message-templates/restore-defaults', methods=['POST'])
 def restore_default_templates():
     """Restore message templates to their original default values"""
