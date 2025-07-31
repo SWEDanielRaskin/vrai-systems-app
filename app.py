@@ -39,6 +39,7 @@ app = Flask(__name__)
 # Enable CORS for all routes
 CORS(app, origins=[
     "http://localhost:3000",
+    "https://vrai-systems-app-production.up.railway.app",
     "https://your-netlify-app.netlify.app",  # Replace with your actual Netlify URL
     "https://vrai-systems.netlify.app"  # Example domain
 ], supports_credentials=True)
@@ -1232,7 +1233,7 @@ db.set_setting = set_setting_with_mode_broadcast
 def trigger_daily_archive():
     try:
         logger.info("⏰ Triggering daily archive job...")
-        pyrequests.post('http://localhost:5000/api/archive/daily')
+        pyrequests.post('https://vrai-systems-app-production.up.railway.app/api/archive/daily')
         check_and_broadcast_mode_change()
     except Exception as e:
         logger.error(f"❌ Error in daily archive job: {str(e)}")
@@ -1240,7 +1241,7 @@ def trigger_daily_archive():
 def trigger_weekly_archive():
     try:
         logger.info("⏰ Triggering weekly archive job...")
-        pyrequests.post('http://localhost:5000/api/archive/weekly')
+        pyrequests.post('https://vrai-systems-app-production.up.railway.app/api/archive/weekly')
         check_and_broadcast_mode_change()
     except Exception as e:
         logger.error(f"❌ Error in weekly archive job: {str(e)}")

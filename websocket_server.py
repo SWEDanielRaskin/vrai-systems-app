@@ -111,7 +111,7 @@ async def handle_media_stream(websocket, path):
         # Now broadcast call_finished SSE
         try:
             response = requests.post(
-                'http://localhost:5000/api/broadcast/call_finished',
+                'https://vrai-systems-app-production.up.railway.app/api/broadcast/call_finished',
                 json={'callId': call_sid},
                 timeout=2
             )
@@ -138,11 +138,11 @@ async def main():
     # Start WebSocket server
     server = await websockets.serve(
         handle_media_stream,
-        "localhost",
+        "0.0.0.0",
         8080
     )
     
-    logger.info("WebSocket server running on ws://localhost:8080")
+    logger.info("WebSocket server running on ws://0.0.0.0:8080")
     logger.info("Make sure to expose this with: ngrok http 8080")
     
     # Keep server running
