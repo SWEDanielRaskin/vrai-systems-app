@@ -33,7 +33,7 @@ lxml
 MarkupSafe
 numpy
 oauthlib
-openai
+openai==1.3.0
 openpyxl
 paho-mqtt
 pandas
@@ -46,9 +46,9 @@ pyparsing
 PyPDF2
 python-dateutil
 python-docx
-python-dotenv
+python-dotenv==1.0.0
 pytz
-requests
+requests==2.31.0
 requests-oauthlib
 rsa
 simple-websocket
@@ -63,7 +63,8 @@ tzdata
 tzlocal
 uritemplate
 urllib3
-websockets
+websockets==12.0
 Werkzeug
 gunicorn
 wsproto
+aiohttp==3.9.1
