@@ -1,123 +1,106 @@
-npm warn config production Use `--omit=dev` instead.
+[Region: us-east4]
 
-npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+=========================
 
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+Using Detected Dockerfile
 
-npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-
-npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
-
-npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
-
-npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+=========================
 
 
-added 412 packages, and audited 413 packages in 5s
+context: rc58-Zkin
+
+[internal] load build definition from Dockerfile
+
+[internal] load build definition from Dockerfile
+
+[internal] load build definition from Dockerfile  ✔ 0 ms
+
+[internal] load build definition from Dockerfile
+
+[internal] load build definition from Dockerfile  ✔ 10 ms
+
+[internal] load metadata for docker.io/library/python:3.9-slim
+
+[auth] library/python:pull token for registry-1.docker.io
+
+[auth] library/python:pull token for registry-1.docker.io  ✔ 0 ms
+
+[internal] load metadata for docker.io/library/python:3.9-slim  ✔ 269 ms
+
+[internal] load .dockerignore
+
+[internal] load .dockerignore
+
+[internal] load .dockerignore  ✔ 0 ms
+
+[internal] load .dockerignore
+
+[internal] load .dockerignore  ✔ 8 ms
+
+[5/5] COPY . .
+
+[4/5] RUN pip install --no-cache-dir -r requirements.txt
+
+[3/5] COPY requirements.txt .
+
+[internal] load build context
+
+[2/5] WORKDIR /app
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6
+
+[internal] load build context  ✔ 0 ms
+
+[internal] load build context
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6  ✔ 8 ms
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6  ✔ 0 ms
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6
+
+[internal] load build context  ✔ 26 ms
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6  ✔ 19 ms
+
+[1/5] FROM docker.io/library/python:3.9-slim@sha256:4b826e2ca2191c24a03bdbf0c342a73c6ee4ce929eac5ebc47fef78f66b839d6
+
+[2/5] WORKDIR /app
+
+[2/5] WORKDIR /app  ✔ 53 ms
+
+[3/5] COPY requirements.txt .
+
+[3/5] COPY requirements.txt .  ✔ 12 ms
+
+[4/5] RUN pip install --no-cache-dir -r requirements.txt
+
+ERROR: Extras after version '==0.22.0[p][]'.
 
 
+[notice] A new release of pip is available: 23.0.1 -> 25.2
+[notice] To update, run: pip install --upgrade pip
 
-137 packages are looking for funding
-
-  run `npm fund` for details
-
-
-found 0 vulnerabilities
-
-[stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm npm ci  ✔ 6 sec
-
-[stage-0 12/15] COPY . /app/.
-
-[stage-0 12/15] COPY . /app/.  ✔ 188 ms
-
-[stage-0 13/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-node_modules/cache,target=/app/node_modules/.cache npm run build
-
-npm warn config production Use `--omit=dev` instead.
-
-
-> radiance-dashboard@0.0.0 build
-> vite build
-
-
-vite v6.3.5 building for production...
-
-transforming...
-
-✓ 1730 modules transformed.
-
-rendering chunks...
-
-computing gzip size...
-
-dist/index.html                   0.73 kB │ gzip:   0.41 kB
-
-dist/assets/index-CaFr4kYP.css   29.14 kB │ gzip:   5.56 kB
-
-dist/assets/index-C6KS4gi1.js   374.07 kB │ gzip: 106.56 kB
-
-✓ built in 3.43s
-
-[stage-0 13/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-node_modules/cache,target=/app/node_modules/.cache npm run build  ✔ 4 sec
-
-[stage-0 14/15] RUN printf '\nPATH=/app/node_modules/.bin:$PATH' >> /root/.profile
-
-[stage-0 14/15] RUN printf '\nPATH=/app/node_modules/.bin:$PATH' >> /root/.profile  ✔ 104 ms
-
-[stage-0 15/15] COPY . /app
-
-[stage-0 15/15] COPY . /app  ✔ 26 ms
-
-exporting to docker image format
-
-exporting to image
-
-[auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com
-
-[auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com  ✔ 0 ms
-
-importing to docker
-
-importing to docker  ✔ 8 sec
-
-=== Successfully Built! ===
-
-Run:
-
-docker run -it production-us-east4-eqdc4a.railway-registry.com/60452bc7-bc65-4223-a304-317ad1176bb0:80928608-1e1f-440f-a360-6c7522e1ac93
-
-Build time: 79.71 seconds
-
+✕ [4/5] RUN pip install --no-cache-dir -r requirements.txt 
+process "/bin/sh -c pip install --no-cache-dir -r requirements.txt" did not complete successfully: exit code: 1
  
 
-====================
+Dockerfile:11
 
-Starting Healthcheck
+-------------------
 
-====================
+9 |
 
+10 |     # Install Python dependencies
 
-Path: /health
+11 | >>> RUN pip install --no-cache-dir -r requirements.txt
 
-Retry window: 1m40s
+12 |
 
- 
+13 |     # Copy application code
 
-Attempt #1 failed with service unavailable. Continuing to retry for 1m36s
+-------------------
 
-Attempt #2 failed with service unavailable. Continuing to retry for 1m25s
-
-Attempt #3 failed with service unavailable. Continuing to retry for 1m23s
-
-Attempt #4 failed with service unavailable. Continuing to retry for 1m19s
-
-Attempt #5 failed with service unavailable. Continuing to retry for 1m10s
-
-Attempt #6 failed with service unavailable. Continuing to retry for 54s
-
-Attempt #7 failed with service unavailable. Continuing to retry for 24s
-
- 
-
-1/1 replicas never became healthy!
-
-Healthcheck failed!
+ERROR: failed to build: failed to solve: process "/bin/sh -c pip install --no-cache-dir -r requirements.txt" did not complete successfully: exit code: 1
