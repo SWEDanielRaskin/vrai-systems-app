@@ -17,4 +17,7 @@ build/
 *.db-shm
 .env
 google-calendar-credentials.json
-uploads/ 
+uploads/
+
+# Ignore websocket folder (deployed as separate service)
+websocket/ 
