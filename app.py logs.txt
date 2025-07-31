@@ -1,0 +1,789 @@
+      "text": "Welcome back, Daniel! I see you're due for Repeat Lip Filler. Would you like to book that, or another service?",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "sent"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:31:32.007+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 4031985b-f5cc-4028-a78d-dedeb8ed2228 (Cache size: 4)
+INFO:__main__:📱 Skipping outbound message: outbound
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:31:33] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1898', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': '16YJRrzZyPoVzbrRFJV0WswYKCr92y2yoUPxT4tM6cPczTkYzjeJub27gjp2Cb5exzqPMQyyMJMRIOrT66TCAA==', 'Telnyx-Timestamp': '1753889494', 'X-Forwarded-For': '192.76.120.151', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.finalized",
+    "id": "ce02388c-3daa-4a9c-afa8-3fea380d5444",
+    "occurred_at": "2025-07-30T15:31:34.369+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": "2025-07-30T15:31:34.369+00:00",
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f5cc-4028-a78d-dedeb8ed2228",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:31:32.007+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:31:32.240+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "Welcome back, Daniel! I see you're due for Repeat Lip Filler. Would you like to book that, or another service?",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:31:32.007+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:🔄 Skipping duplicate message: 4031985b-f5cc-4028-a78d-dedeb8ed2228
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:31:35] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1669', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'EoevLCpLJIvETtVJ3XGHpMyjDjnKFzMs6tlSSaDT5XhLvT+j7lr4kvBJI+MMd+du54+o4KnSXBdx46LmDvJtBQ==', 'Telnyx-Timestamp': '1753889504', 'X-Forwarded-For': '192.76.120.151', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.received",
+    "id": "83553dd6-94d2-4cf4-9e88-e848738494ca",
+    "occurred_at": "2025-07-30T15:31:44.274+00:00",
+    "payload": {
+      "autoresponse_type": null,
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "inbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "T-Mobile USA",
+        "line_type": "Wireless",
+        "phone_number": "+13132044895"
+      },
+      "id": "06ae2131-d1dc-488f-907a-a98935d7905e",
+      "is_spam": false,
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:31:44.082+00:00",
+      "record_type": "message",
+      "sent_at": null,
+      "subject": "",
+      "tags": [],
+      "text": "Yes, let's book that",
+      "to": [
+        {
+          "carrier": "Telnyx",
+          "line_type": "Wireless",
+          "phone_number": "+18773900002",
+          "status": "webhook_delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": null,
+      "webhook_failover_url": null,
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 06ae2131-d1dc-488f-907a-a98935d7905e (Cache size: 5)
+INFO:__main__:📱 Debug - Full payload direction: inbound
+INFO:__main__:📱 Debug - From object: {'carrier': 'T-Mobile USA', 'line_type': 'Wireless', 'phone_number': '+13132044895'}
+INFO:__main__:📱 Debug - To object: [{'carrier': 'Telnyx', 'line_type': 'Wireless', 'phone_number': '+18773900002', 'status': 'webhook_delivered'}]
+INFO:__main__:📱 SMS conversation - Customer: +13132044895 → Business: +18773900002
+INFO:__main__:📱 Message: Yes, let's book that
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_service:🔧 AI chose to call functions: 1 function(s)
+INFO:ai_service:🔧 AI calling function: handle_sms_up_next_suggestion with args: {'response': "Yes, let's book that"}
+INFO:ai_service:🔧 AI calling function: handle_sms_up_next_suggestion with args: {'response': "Yes, let's book that"}
+INFO:ai_service:🔧 Executing function: handle_sms_up_next_suggestion with arguments: {'response': "Yes, let's book that"}
+INFO:ai_service:📋 SMS - Up-next service response: Yes, let's book that
+INFO:ai_service:📝 SMS Booking - Collected service: Repeat Lip Filler
+INFO:ai_service:📊 SMS Booking progress: 4/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service']
+INFO:ai_service:⏭️ Next SMS booking step needed: up_next_response
+INFO:ai_service:📝 SMS Booking - Collected up_next_response: accepted
+INFO:ai_service:📊 SMS Booking progress: 5/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response']
+INFO:ai_service:⏭️ Next SMS booking step needed: booking_details
+INFO:ai_service:✅ SMS - Customer accepted up-next service: Repeat Lip Filler
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:booking_verification_service:📝 Logged AI response for +13132044895: Perfect! I'll book your Repeat Lip Filler appointm...
+INFO:database_service:✅ Message exchange logged for +13132044895
+INFO:root:[SSE] Broadcasting event to 0 clients: {"type": "new_message", "phone": "+13132044895"}
+INFO:__main__:📝 Generating/updating AI summary for conversation +13132044895 (messages: 204)
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_summarizer:👤 AI extracted customer name from SMS: 'Daniel' for +13132044895
+INFO:ai_summarizer:👤 Found customer name in database: 'Daniel Raskin' for +13132044895
+INFO:ai_summarizer:👤 Using database name override: 'Daniel Raskin' (AI extracted: 'Daniel') for +13132044895
+INFO:ai_summarizer:✅ Generated SMS summary: Customer repeatedly booked and canceled various ap...
+INFO:database_service:✅ Summary updated for conversation +13132044895
+INFO:database_service:✅ Summary message count updated for conversation +13132044895: 204
+INFO:__main__:🔍 Checking for notifications in conversation +13132044895
+INFO:__main__:🔍 Analyzing 70 messages after timestamp 2025-07-29T18:54:41.470211-04:00
+INFO:ai_summarizer:👽 Notification detection using summary:
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_summarizer:✅ No notification-worthy issues detected
+INFO:__main__:📱 Sending reply - Business: +18773900002 → Customer: +13132044895
+INFO:sms_service:📱 Sending SMS from +18773900002 to +13132044895: Perfect! I'll book your Repeat Lip Filler appointment. What date and time would you like, and do you have a preference for which specialist?
+INFO:sms_service:✅ SMS sent successfully to +13132044895
+INFO:__main__:📱 SMS response sent to +13132044895: Perfect! I'll book your Repeat Lip Filler appointment. What date and time would you like, and do you have a preference for which specialist?
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:31:49] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1891', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'jkiDUmDRUCZD2T5xzy/bFzH/e1cUVmKTsNE4yzfj0DbwkOJnMXuCNNNSsVdunLciN2QK7W+UUwxMrNdaVjqSBg==', 'Telnyx-Timestamp': '1753889509', 'X-Forwarded-For': '192.76.120.128', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.sent",
+    "id": "eeb3062d-8147-4e2e-bcf7-25e30299abbb",
+    "occurred_at": "2025-07-30T15:31:49.040+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f60d-4a00-b278-f61a87cbfacf",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:31:48.802+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:31:49.040+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "Perfect! I'll book your Repeat Lip Filler appointment. What date and time would you like, and do you have a preference for which specialist?",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "sent"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:31:48.802+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 4031985b-f60d-4a00-b278-f61a87cbfacf (Cache size: 6)
+INFO:__main__:📱 Skipping outbound message: outbound
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:31:50] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1928', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'vjmBZPT7juxv8yFdcOXB2C2noV8Dq9WZTXUl0XOhAWbT6CVepdLnrmsI4igjGjOgxGHRkXXxVGmVIpRl5bNGCQ==', 'Telnyx-Timestamp': '1753889511', 'X-Forwarded-For': '192.76.120.151', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.finalized",
+    "id": "6c8c1f59-b7e4-4092-8688-52280661782b",
+    "occurred_at": "2025-07-30T15:31:51.034+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": "2025-07-30T15:31:51.034+00:00",
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f60d-4a00-b278-f61a87cbfacf",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:31:48.802+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:31:49.040+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "Perfect! I'll book your Repeat Lip Filler appointment. What date and time would you like, and do you have a preference for which specialist?",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:31:48.802+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:🔄 Skipping duplicate message: 4031985b-f60d-4a00-b278-f61a87cbfacf
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:31:52] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1682', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'Li2hreBWtPWIMxMLjvrcHJ74MPy3tjgNFNvMQE14bp01kybUcjh8wlTmpHi2b4XWcHjL9t3lmx1bmSijU8oICQ==', 'Telnyx-Timestamp': '1753889528', 'X-Forwarded-For': '192.76.120.142', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.received",
+    "id": "d59c0bff-b774-4594-adfe-f18eeddf5777",
+    "occurred_at": "2025-07-30T15:32:08.597+00:00",
+    "payload": {
+      "autoresponse_type": null,
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "inbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "T-Mobile USA",
+        "line_type": "Wireless",
+        "phone_number": "+13132044895"
+      },
+      "id": "3b4cdf2f-d39f-4cf5-9b37-4b11a5ac32b9",
+      "is_spam": false,
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:08.424+00:00",
+      "record_type": "message",
+      "sent_at": null,
+      "subject": "",
+      "tags": [],
+      "text": "Let's do Monday at 2pm, with Leon",
+      "to": [
+        {
+          "carrier": "Telnyx",
+          "line_type": "Wireless",
+          "phone_number": "+18773900002",
+          "status": "webhook_delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": null,
+      "webhook_failover_url": null,
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 3b4cdf2f-d39f-4cf5-9b37-4b11a5ac32b9 (Cache size: 7)
+INFO:__main__:📱 Debug - Full payload direction: inbound
+INFO:__main__:📱 Debug - From object: {'carrier': 'T-Mobile USA', 'line_type': 'Wireless', 'phone_number': '+13132044895'}
+INFO:__main__:📱 Debug - To object: [{'carrier': 'Telnyx', 'line_type': 'Wireless', 'phone_number': '+18773900002', 'status': 'webhook_delivered'}]
+INFO:__main__:📱 SMS conversation - Customer: +13132044895 → Business: +18773900002
+INFO:__main__:📱 Message: Let's do Monday at 2pm, with Leon
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_service:🔧 AI chose to call functions: 1 function(s)
+INFO:ai_service:🔧 AI calling function: book_appointment with args: {'name': 'Daniel', 'phone': '3132044895', 'date': '2025-08-04', 'time': '14:00', 'service': 'Lip Filler', 'specialist_preference': 'Leon'}
+INFO:ai_service:🔧 AI calling function: book_appointment with args: {'name': 'Daniel', 'phone': '3132044895', 'date': '2025-08-04', 'time': '14:00', 'service': 'Lip Filler', 'specialist_preference': 'Leon'}
+INFO:database_service:✅ Message exchange logged for +13132044895
+INFO:root:[SSE] Broadcasting event to 0 clients: {"type": "new_message", "phone": "+13132044895"}
+INFO:__main__:🔍 Checking for notifications in conversation +13132044895
+INFO:__main__:🔍 Analyzing 72 messages after timestamp 2025-07-29T18:54:41.470211-04:00
+INFO:ai_summarizer:👽 Notification detection using summary:
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_summarizer:✅ No notification-worthy issues detected
+INFO:__main__:📱 Sending reply - Business: +18773900002 → Customer: +13132044895
+INFO:sms_service:📱 Sending SMS from +18773900002 to +13132044895: I'm already processing your appointment booking. Please wait for confirmation.
+INFO:sms_service:✅ SMS sent successfully to +13132044895
+INFO:__main__:📱 SMS response sent to +13132044895: I'm already processing your appointment booking. Please wait for confirmation.
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:32:13] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1829', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'bauZu92gW4vMM+4yxC1PgOrR2yc8ByaFWjZVpmAkXF80KVN2MhnlavSgwlGBAodAGgqIFxinwRR5qBHZrK9bCQ==', 'Telnyx-Timestamp': '1753889533', 'X-Forwarded-For': '192.76.120.128', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.sent",
+    "id": "4d4ae09e-c71b-4099-8444-91e69eaeb6aa",
+    "occurred_at": "2025-07-30T15:32:13.240+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f66c-44ec-a81e-6312093e58ec",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:13.020+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:32:13.240+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "I'm already processing your appointment booking. Please wait for confirmation.",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "sent"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:32:13.020+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 4031985b-f66c-44ec-a81e-6312093e58ec (Cache size: 8)
+INFO:__main__:📱 Skipping outbound message: outbound
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:32:14] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1866', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'fuO6FPbGKblkrtYNgrIz7eRMEIwcichDe8k/G68UIbCuO02cnzbytMXG4+/mmJYaVSOc0f15AxsoPcZSTCq5Dg==', 'Telnyx-Timestamp': '1753889535', 'X-Forwarded-For': '192.76.120.142', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.finalized",
+    "id": "3b3ab93a-3915-46c2-8fc1-9c210808bdfe",
+    "occurred_at": "2025-07-30T15:32:15.362+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": "2025-07-30T15:32:15.362+00:00",
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f66c-44ec-a81e-6312093e58ec",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:13.020+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:32:13.240+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "I'm already processing your appointment booking. Please wait for confirmation.",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:32:13.020+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:🔄 Skipping duplicate message: 4031985b-f66c-44ec-a81e-6312093e58ec
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:32:16] "POST /message HTTP/1.1" 200 -
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1654', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': 'dUVhAT+fnlr2v2kNIRJPBGUIz1mutYNywbaegZOHYHEjwmXYSLAsSPiCW/ljbXzCqhVJ5tENwBHxjdVM5ByeAA==', 'Telnyx-Timestamp': '1753889566', 'X-Forwarded-For': '192.76.120.151', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.received",
+    "id": "c0c82053-8ac9-42b8-81fe-904e0d6477d3",
+    "occurred_at": "2025-07-30T15:32:46.200+00:00",
+    "payload": {
+      "autoresponse_type": null,
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "inbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "T-Mobile USA",
+        "line_type": "Wireless",
+        "phone_number": "+13132044895"
+      },
+      "id": "0bbe18f8-319c-48be-82d4-7614477cb2d5",
+      "is_spam": false,
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:45.882+00:00",
+      "record_type": "message",
+      "sent_at": null,
+      "subject": "",
+      "tags": [],
+      "text": "Well?",
+      "to": [
+        {
+          "carrier": "Telnyx",
+          "line_type": "Wireless",
+          "phone_number": "+18773900002",
+          "status": "webhook_delivered"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": null,
+      "webhook_failover_url": null,
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 0bbe18f8-319c-48be-82d4-7614477cb2d5 (Cache size: 9)
+INFO:__main__:📱 Debug - Full payload direction: inbound
+INFO:__main__:📱 Debug - From object: {'carrier': 'T-Mobile USA', 'line_type': 'Wireless', 'phone_number': '+13132044895'}
+INFO:__main__:📱 Debug - To object: [{'carrier': 'Telnyx', 'line_type': 'Wireless', 'phone_number': '+18773900002', 'status': 'webhook_delivered'}]
+INFO:__main__:📱 SMS conversation - Customer: +13132044895 → Business: +18773900002
+INFO:__main__:📱 Message: Well?
+INFO:knowledge_base_service:🤔 Question indicator found, triggering knowledge function with 'general' type
+INFO:ai_service:🎯 Knowledge base trigger detected for message: 'Well?' (type: general)
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:ai_service:🔧 AI chose to call functions: 1 function(s)
+INFO:ai_service:🔧 AI calling function: collect_sms_booking_details with args: {'service': 'Repeat Lip Filler', 'date': '2025-07-31', 'time': '10:00', 'specialist': 'Sarah'}
+INFO:ai_service:🔧 AI calling function: collect_sms_booking_details with args: {'service': 'Repeat Lip Filler', 'date': '2025-07-31', 'time': '10:00', 'specialist': 'Sarah'}
+INFO:ai_service:🔧 Executing function: collect_sms_booking_details with arguments: {'service': 'Repeat Lip Filler', 'date': '2025-07-31', 'time': '10:00', 'specialist': 'Sarah'}
+INFO:ai_service:📝 SMS Booking - Collecting details: name=None, service=Repeat Lip Filler, date=2025-07-31, time=10:00, specialist=Sarah
+INFO:ai_service:📝 SMS Booking - Collected booking_details: collected
+INFO:ai_service:📊 SMS Booking progress: 6/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response', 'booking_details']
+INFO:ai_service:⏭️ Next SMS booking step needed: None
+INFO:ai_service:📝 SMS Booking - Collected service: Repeat Lip Filler
+INFO:ai_service:📊 SMS Booking progress: 6/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response', 'booking_details']
+INFO:ai_service:⏭️ Next SMS booking step needed: None
+INFO:ai_service:📝 SMS Booking - Collected date: 2025-07-31
+INFO:ai_service:📊 SMS Booking progress: 7/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response', 'booking_details', 'date']
+INFO:ai_service:⏭️ Next SMS booking step needed: None
+INFO:ai_service:📝 SMS Booking - Collected time: 10:00
+INFO:ai_service:📊 SMS Booking progress: 8/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response', 'booking_details', 'date', 'time']
+INFO:ai_service:⏭️ Next SMS booking step needed: None
+INFO:ai_service:📝 SMS Booking - Collected specialist: Sarah
+INFO:ai_service:📊 SMS Booking progress: 9/3 steps complete
+INFO:ai_service:📋 SMS Booking data so far: ['phone', 'customer_name', 'up_next_service', 'service', 'up_next_response', 'booking_details', 'date', 'time', 'specialist']
+INFO:ai_service:⏭️ Next SMS booking step needed: None
+INFO:ai_service:📋 SMS - Booking up-next custom service: Repeat Lip Filler
+INFO:appointment_service:📝 Booking CUSTOM appointment for Daniel Raskin - Repeat Lip Filler ($0.0, 60min) on 2025-07-31 at 10:00
+INFO:google_calendar_service:📅 Found 7 available slots for 2025-07-31
+INFO:appointment_service:👥 Using preferred specialist: Sarah
+INFO:google_calendar_service:✅ Google Calendar event created: 87qmpq1q5346169kvt25bn3i2c
+INFO:database_service:✅ Appointment created/updated: 87qmpq1q5346169kvt25bn3i2c
+INFO:appointment_service:✅ Custom appointment saved to database: 87qmpq1q5346169kvt25bn3i2c
+INFO:appointment_service:🔄 Immediately syncing custom appointment 87qmpq1q5346169kvt25bn3i2c with Google Calendar...
+INFO:appointment_service:🔄 Syncing single appointment: 87qmpq1q5346169kvt25bn3i2c
+INFO:google_calendar_service:📅 Retrieved event 87qmpq1q5346169kvt25bn3i2c from Google Calendar
+INFO:database_service:✅ Appointment updated: 87qmpq1q5346169kvt25bn3i2c
+INFO:appointment_service:✅ Updated appointment 87qmpq1q5346169kvt25bn3i2c with full details from Google Calendar
+INFO:appointment_service:✅ Custom appointment 87qmpq1q5346169kvt25bn3i2c synced successfully
+INFO:appointment_service:📱 Formatted phone number: +13132044895
+INFO:sms_service:📱 Sending SMS from +18773900002 to +13132044895: Your Repeat Lip Filler appointment with Sarah is confirmed for 07/31/2025 at 10:00 AM. Price: $0.0. Duration: 60 minutes. See you then!
+INFO:sms_service:✅ SMS sent successfully to +13132044895
+INFO:appointment_service:✅ Confirmation SMS sent to +13132044895
+INFO:appointment_service:🚮 Cleared interest notifications for +13132044895 after appointment confirmation.
+INFO:message_scheduler:⏰ Appointment booked 22.5 hours in advance, less than 30 required - skipping reminder
+INFO:apscheduler.scheduler:Added job "send_scheduled_message_standalone" to job store "default"
+INFO:message_scheduler:📝 Thank you message scheduled for 2025-07-31 12:00:00-04:00
+INFO:message_scheduler:💫 Thank you message scheduled for Daniel Raskin
+INFO:appointment_service:📅 Messages scheduled for custom appointment: 87qmpq1q5346169kvt25bn3i2c
+INFO:appointment_service:✅ Custom appointment booked successfully: Daniel Raskin - Repeat Lip Filler
+INFO:ai_service:🔄 SMS Booking state machine reset
+INFO:ai_service:📋 Default required steps: ['phone', 'booking_details']
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1886', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': '03+9fLxG8aC9uYFFWKP90nuuUlDCdYtmXprjaPtkkCiGO4zhGk6DS6k/7DjcIk9gc8oiyAasxDpVzJrnko22CA==', 'Telnyx-Timestamp': '1753889570', 'X-Forwarded-For': '192.76.120.128', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.sent",
+    "id": "2bff55e1-3bb0-44e9-9164-61c047e4ce11",
+    "occurred_at": "2025-07-30T15:32:50.705+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": null,
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f6fe-4ae6-a30b-6df5275af03b",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:50.497+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:32:50.705+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "Your Repeat Lip Filler appointment with Sarah is confirmed for 07/31/2025 at 10:00 AM. Price: $0.0. Duration: 60 minutes. See you then!",
+      "to": [
+        {
+          "carrier": "OMNIPOINT COMMUNICATIONS MIDWEST OPERATIONS, LLC",
+          "line_type": "Wireless",
+          "phone_number": "+13132044895",
+          "status": "sent"
+        }
+      ],
+      "type": "SMS",
+      "valid_until": "2025-07-30T16:32:50.497+00:00",
+      "webhook_failover_url": "",
+      "webhook_url": "https://26b24a9d6c0e.ngrok-free.app/message"
+    },
+    "record_type": "event"
+  },
+  "meta": {
+    "attempt": 1,
+    "delivered_to": "https://26b24a9d6c0e.ngrok-free.app/message"
+  }
+}
+INFO:__main__:✅ New message processed: 4031985b-f6fe-4ae6-a30b-6df5275af03b (Cache size: 10)
+INFO:__main__:📱 Skipping outbound message: outbound
+INFO:werkzeug:127.0.0.1 - - [30/Jul/2025 11:32:51] "POST /message HTTP/1.1" 200 -
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:booking_verification_service:📝 Logged AI response for +13132044895: Your Repeat Lip Filler with Sarah is booked for Ju...
+INFO:database_service:✅ Message exchange logged for +13132044895
+INFO:root:[SSE] Broadcasting event to 0 clients: {"type": "new_message", "phone": "+13132044895"}
+INFO:__main__:📝 Generating/updating AI summary for conversation +13132044895 (messages: 208)
+INFO:__main__:📱 SMS received. Headers: {'Host': '26b24a9d6c0e.ngrok-free.app', 'User-Agent': 'telnyx-webhooks', 'Content-Length': '1923', 'Content-Type': 'application/json', 'Telnyx-Signature-Ed25519': '4rV/ymmsPQLty9GiEUMslN6NyCJkDX0yQOn5XdGxo+fiQqnoac/YFTUAySTdaZVMD/SqtI++hG48Yb2K0yNFBg==', 'Telnyx-Timestamp': '1753889572', 'X-Forwarded-For': '192.76.120.142', 'X-Forwarded-Host': '26b24a9d6c0e.ngrok-free.app', 'X-Forwarded-Proto': 'https', 'Accept-Encoding': 'gzip'}
+INFO:__main__:📱 SMS data: {
+  "data": {
+    "event_type": "message.finalized",
+    "id": "978ec094-0b1c-488c-a5de-abc0725bf3e5",
+    "occurred_at": "2025-07-30T15:32:52.505+00:00",
+    "payload": {
+      "cc": [],
+      "completed_at": "2025-07-30T15:32:52.505+00:00",
+      "cost": {
+        "amount": "0.0085",
+        "currency": "USD"
+      },
+      "cost_breakdown": {
+        "carrier_fee": {
+          "amount": "0.00300",
+          "currency": "USD"
+        },
+        "rate": {
+          "amount": "0.00550",
+          "currency": "USD"
+        }
+      },
+      "direction": "outbound",
+      "encoding": "GSM-7",
+      "errors": [],
+      "from": {
+        "carrier": "Telnyx",
+        "line_type": "Wireless",
+        "phone_number": "+18773900002"
+      },
+      "id": "4031985b-f6fe-4ae6-a30b-6df5275af03b",
+      "media": [],
+      "messaging_profile_id": "40019736-4349-4cde-8878-64c12ca9c70e",
+      "organization_id": "8c8fdc6f-f1bb-4bad-a6d5-1a766f415bea",
+      "parts": 1,
+      "received_at": "2025-07-30T15:32:50.497+00:00",
+      "record_type": "message",
+      "sent_at": "2025-07-30T15:32:50.705+00:00",
+      "tags": [],
+      "tcr_campaign_billable": false,
+      "tcr_campaign_id": null,
+      "tcr_campaign_registered": null,
+      "text": "Your Repeat Lip Filler appointment with Sarah is confirmed for 07/31/2025 at 10:00 AM. Price: $0.0. Duration: 60 minutes. See you then!",
