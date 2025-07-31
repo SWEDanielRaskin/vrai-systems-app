@@ -42,7 +42,7 @@ CORS(app, origins=[
     "https://vrai-systems-app-production.up.railway.app",
     "https://your-netlify-app.netlify.app",  # Replace with your actual Netlify URL
     "https://vrai-systems.netlify.app"  # Example domain
-], supports_credentials=True)
+], supports_credentials=True, methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allow_headers=['Content-Type', 'Authorization'])
 
 # Register API blueprint
 app.register_blueprint(api_bp)
