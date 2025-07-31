@@ -1,127 +1,123 @@
-deleting '/nix/store/fkfhss4k4zqi3rqzwgisqa8gm8xjb0b2-libpsl-0.21.5'
+npm warn config production Use `--omit=dev` instead.
 
-deleting '/nix/store/fp6cjl1zcmm6mawsnrb5yak1wkz2ma8l-gnumake-4.4.1'
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
 
-deleting '/nix/store/ms0lr6dry5wvzksi3vkjpq0i8bzpcbin-python3.9-pytest-8.3.3-dist'
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
-deleting '/nix/store/abm77lnrkrkb58z6xp1qwjcr1xgkcfwm-gnused-4.9'
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
 
-deleting '/nix/store/c7nfwszrxldbjcs1il5zk05nifmi54x4-filelock-3.16.1.tar.gz'
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
 
-deleting '/nix/store/x37qzklazz3w83dj5fllzlfd1bqjyxa6-python3.9-bootstrap-pyproject-hooks-1.2.0'
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
 
-deleting '/nix/store/pc74azbkr19rkd5bjalq2xwx86cj3cga-linux-headers-6.12'
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
 
-deleting '/nix/store/7y41qwf11l97dpicphmlxs0k9mcy43pr-pytest-8.3.3.tar.gz'
 
-deleting '/nix/store/2v0si4vq8bsss18mscy0hlic0znl0zcb-python3.9-certifi-2024.08.30-dist'
+added 412 packages, and audited 413 packages in 5s
 
-deleting '/nix/store/558v7azhwn732l194bkqrjmwgjh0ad4q-python3.9-zipp-3.20.2-dist'
 
-deleting '/nix/store/w661s7ai2rbh411r3w94fbfp802xnz8y-libffi-3.4.6-dev'
 
-deleting '/nix/store/gk0v49ywfizd3a1dvfgc9yjvi5gplcq8-babel-2.16.0.tar.gz'
+137 packages are looking for funding
 
-deleting '/nix/store/0qqxg84sfmxsqr9nf1fdnx1xs674n13k-python3.9-pysocks-1.7.1-dist'
+  run `npm fund` for details
 
-deleting '/nix/store/gzq87zzz92a97qjvycylz8b86nz1f2h1-python3.9-pytest-asyncio-0.23.8'
 
-deleting '/nix/store/mp04mmd7glpsck0fh7z8wxww31l32vyg-editables-0.5.tar.gz'
+found 0 vulnerabilities
 
-deleting '/nix/store/389h942wm38fv2ylg8dnn8qr6adi52zx-python3.9-typing-extensions-4.12.2-dist'
+[stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm npm ci  ✔ 6 sec
 
-deleting '/nix/store/cncpr9b9vzhfrw1fw56bw0hn1amf58lz-source'
+[stage-0 12/15] COPY . /app/.
 
-deleting '/nix/store/wmcmj2kgsyw3v5415dhdnav8li2kdhrq-source'
+[stage-0 12/15] COPY . /app/.  ✔ 188 ms
 
-deleting '/nix/store/4cyz21f1hfv986ywa5141r5k4prxr5xv-python3.9-lxml-5.3.0-dist'
+[stage-0 13/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-node_modules/cache,target=/app/node_modules/.cache npm run build
 
-deleting '/nix/store/813srn9ccm8jnzhfb4sq672msmzrqrs2-python3.9-calver-2022.06.26'
+npm warn config production Use `--omit=dev` instead.
 
-deleting '/nix/store/jaighmmblr179p96r4pbxxa74s4xnvlz-python3.9-importlib-metadata-8.5.0-dist'
 
-deleting '/nix/store/3w6jn8mh3hgsi49y3r64f7bwx9yqi2n2-source'
+> radiance-dashboard@0.0.0 build
+> vite build
 
-deleting '/nix/store/izz3r8pavmx0aijgkx404h7rid33brbz-source'
 
-deleting '/nix/store/14ayyjqbx1lnxbyirrkiwcy51ggx7mfd-source'
+vite v6.3.5 building for production...
 
-deleting '/nix/store/390dg8pwcx489m9dpjdwqn6vzvrwfij0-perl5.40.0-LWP-MediaTypes-6.04'
+transforming...
 
-deleting '/nix/store/0lj0851s55mkwmylmkcw4m71m7ggl772-publicsuffix-list-0-unstable-2024-12-06'
+✓ 1730 modules transformed.
 
-deleting '/nix/store/ysvgzs022k6ib6nkxpchgs1c0g5vaizk-idna-3.10.tar.gz'
+rendering chunks...
 
-deleting '/nix/store/cmdw4k56vlxgj3zzpn2mm4j9xk396jz7-python3.9-trove-classifiers-2024.9.12'
+computing gzip size...
 
-deleting '/nix/store/r9ac2hwnmb0nxwsrvr6gi9wsqf2whfqj-libuv-1.49.2'
+dist/index.html                   0.73 kB │ gzip:   0.41 kB
 
-deleting '/nix/store/amk8pmmyb74f2brk9zac5bfqkn6z0kxg-python3.9-sphinxcontrib-applehelp-1.0.8'
+dist/assets/index-CaFr4kYP.css   29.14 kB │ gzip:   5.56 kB
 
-deleting '/nix/store/a2byxfv4lc8f2g5xfzw8cz5q8k05wi29-gmp-with-cxx-6.3.0'
+dist/assets/index-C6KS4gi1.js   374.07 kB │ gzip: 106.56 kB
 
-deleting '/nix/store/07vd2qpkzys21cz0gz07r97krq3sfis1-python3.9-sphinxcontrib-applehelp-1.0.8-dist'
+✓ built in 3.43s
 
-deleting '/nix/store/w2kzzv3d9gpybc2cljb3sygxg6a0b53n-trove_classifiers-2024.9.12.tar.gz'
+[stage-0 13/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-node_modules/cache,target=/app/node_modules/.cache npm run build  ✔ 4 sec
 
-deleting '/nix/store/pjsdfra099mwfb8bkhvc4j7jf7yana55-find-xml-catalogs-hook'
+[stage-0 14/15] RUN printf '\nPATH=/app/node_modules/.bin:$PATH' >> /root/.profile
 
-deleting '/nix/store/j20y8y8s4ra955fvp2hypaqpf6mfjl2f-python3.9-sphinxcontrib-devhelp-1.0.6-dist'
+[stage-0 14/15] RUN printf '\nPATH=/app/node_modules/.bin:$PATH' >> /root/.profile  ✔ 104 ms
 
-deleting '/nix/store/5q154c0kqyja8hjj5iqvrflg2znnawb0-user-environment.drv'
+[stage-0 15/15] COPY . /app
 
-deleting '/nix/store/3jjimb9v9hc78vyp8g6mj86xwz4qqwxm-user-environment'
+[stage-0 15/15] COPY . /app  ✔ 26 ms
 
-deleting '/nix/store/9virg6mk4pgjf5j8k9p9ibby40x8qvfr-env-manifest.nix'
+exporting to docker image format
 
-deleting unused links...
+exporting to image
 
-note: currently hard linking saves 4.80 MiB
+[auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com
 
-352 store paths deleted, 948.78 MiB freed
+[auth] sharing credentials for production-us-east4-eqdc4a.railway-registry.com  ✔ 0 ms
 
-[stage-0  6/15] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d  ✔ 8 min 23 sec
+importing to docker
 
-[stage-0  7/15] COPY .nixpacks/assets /assets/
+importing to docker  ✔ 8 sec
 
-[stage-0  7/15] COPY .nixpacks/assets /assets/  ✔ 120 ms
+=== Successfully Built! ===
 
-[stage-0  8/15] COPY . /app/.
+Run:
 
-[stage-0  8/15] COPY . /app/.  ✔ 40 ms
+docker run -it production-us-east4-eqdc4a.railway-registry.com/60452bc7-bc65-4223-a304-317ad1176bb0:80928608-1e1f-440f-a360-6c7522e1ac93
 
-[stage-0  9/15] RUN  caddy fmt --overwrite /assets/Caddyfile
+Build time: 79.71 seconds
 
-[stage-0  9/15] RUN  caddy fmt --overwrite /assets/Caddyfile  ✔ 216 ms
-
-[stage-0 10/15] COPY . /app/.
-
-[stage-0 10/15] COPY . /app/.  ✔ 89 ms
-
-[stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm python -m pip install -r requirements.txt
-
-/root/.nix-profile/bin/python: No module named pip
-
-✕ [stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm python -m pip install -r requirements.txt 
-process "/bin/bash -ol pipefail -c python -m pip install -r requirements.txt" did not complete successfully: exit code: 1
  
 
-Dockerfile:26
+====================
 
--------------------
+Starting Healthcheck
 
-24 |     ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
+====================
 
-25 |     COPY . /app/.
 
-26 | >>> RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm python -m pip install -r requirements.txt
+Path: /health
 
-27 |
+Retry window: 1m40s
 
-28 |     # build phase
+ 
 
--------------------
+Attempt #1 failed with service unavailable. Continuing to retry for 1m36s
 
-ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c python -m pip install -r requirements.txt" did not complete successfully: exit code: 1
+Attempt #2 failed with service unavailable. Continuing to retry for 1m25s
 
-Docker build failed
+Attempt #3 failed with service unavailable. Continuing to retry for 1m23s
+
+Attempt #4 failed with service unavailable. Continuing to retry for 1m19s
+
+Attempt #5 failed with service unavailable. Continuing to retry for 1m10s
+
+Attempt #6 failed with service unavailable. Continuing to retry for 54s
+
+Attempt #7 failed with service unavailable. Continuing to retry for 24s
+
+ 
+
+1/1 replicas never became healthy!
+
+Healthcheck failed!
