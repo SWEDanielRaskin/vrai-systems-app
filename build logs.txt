@@ -1,0 +1,121 @@
+removing old generations of profile /nix/var/nix/profiles/per-user/root/channels
+
+removing old generations of profile /nix/var/nix/profiles/per-user/root/profile
+
+finding garbage collector roots...
+
+removing stale link from '/nix/var/nix/gcroots/auto/v73nmmh5d8van4ja5c8jn0gjlwhxbz3a' to '/nix/var/nix/profiles/per-user/root/profile-2-link'
+
+deleting garbage...
+
+deleting '/nix/store/4ig84cyqi6qy4n0sanrbzsw1ixa497jx-stdenv-linux'
+
+deleting '/nix/store/a3c47r5z1q2c4rz0kvq8hlilkhx2s718-gawk-5.3.1'
+
+deleting '/nix/store/mglixp03lsp0w986svwdvm7vcy17rdax-bzip2-1.0.8-bin'
+
+deleting '/nix/store/00g69vw7c9lycy63h45ximy0wmzqx5y6-diffutils-3.10'
+
+deleting '/nix/store/wf5zj2gbib3gjqllkabxaw4dh0gzcla3-builder.pl'
+
+deleting '/nix/store/jqrz1vq5nz4lnv9pqzydj0ir58wbjfy1-findutils-4.10.0'
+
+deleting '/nix/store/1i003ijlh9i0mzp6alqby5hg3090pjdx-perl-5.40.0'
+
+deleting '/nix/store/4s9rah4cwaxflicsk5cndnknqlk9n4p3-coreutils-9.5'
+
+deleting '/nix/store/a2byxfv4lc8f2g5xfzw8cz5q8k05wi29-gmp-with-cxx-6.3.0'
+
+deleting '/nix/store/d29r1bdmlvwmj52apgcdxfl1mm9c5782-update-autotools-gnu-config-scripts-hook'
+
+deleting '/nix/store/1m67ipsk39xvhyqrxnzv2m2p48pil8kl-gnu-config-2024-01-01'
+
+deleting '/nix/store/5yja5dpk2qw1v5mbfbl2d7klcdfrh90w-patch-2.7.6'
+
+deleting '/nix/store/abm77lnrkrkb58z6xp1qwjcr1xgkcfwm-gnused-4.9'
+
+deleting '/nix/store/aap6cq56amx4mzbyxp2wpgsf1kqjcr1f-gnugrep-3.11'
+
+deleting '/nix/store/3j1p598fivxs69wx3a657ysv3rw8k06l-pcre2-10.44'
+
+deleting '/nix/store/h18s640fnhhj2qdh5vivcfbxvz377srg-xz-5.6.3-bin'
+
+deleting '/nix/store/lwi59jcfwk2lnrakmm1y5vw85hj3n1bi-source'
+
+deleting '/nix/store/9cwwj1c9csmc85l2cqzs3h9hbf1vwl6c-gnutar-1.35'
+
+deleting '/nix/store/cf7gkacyxmm66lwl5nj6j6yykbrg4q5c-acl-2.3.2'
+
+deleting '/nix/store/c4rj90r2m89rxs64hmm857mipwjhig5d-file-5.46'
+
+deleting '/nix/store/1c0dv2pdlshjz5kmjd4dfp3c96yncr23-libraries'
+
+deleting '/nix/store/a9jgnlhkjkxav6qrc3rzg2q84pkl2wvr-attr-2.5.2'
+
+deleting '/nix/store/fp6cjl1zcmm6mawsnrb5yak1wkz2ma8l-gnumake-4.4.1'
+
+deleting '/nix/store/na4c03201p0gmhn3bqr089x0xqia157w-source'
+
+deleting '/nix/store/srfxqk119fijwnprgsqvn68ys9kiw0bn-patchelf-0.15.0'
+
+deleting '/nix/store/74h4z8k82pmp24xryflv4lxkz8jlpqqd-ed-1.20.2'
+
+deleting '/nix/store/nvvj6sk0k6px48436drlblf4gafgbvzr-gzip-1.13'
+
+deleting '/nix/store/3jjimb9v9hc78vyp8g6mj86xwz4qqwxm-user-environment'
+
+deleting '/nix/store/5q154c0kqyja8hjj5iqvrflg2znnawb0-user-environment.drv'
+
+deleting '/nix/store/9virg6mk4pgjf5j8k9p9ibby40x8qvfr-env-manifest.nix'
+
+deleting unused links...
+
+note: currently hard linking saves 3.86 MiB
+
+30 store paths deleted, 249.40 MiB freed
+
+[stage-0  6/15] RUN nix-env -if .nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix && nix-collect-garbage -d  ✔ 32 sec
+
+[stage-0  7/15] COPY .nixpacks/assets /assets/
+
+[stage-0  7/15] COPY .nixpacks/assets /assets/  ✔ 82 ms
+
+[stage-0  8/15] COPY . /app/.
+
+[stage-0  8/15] COPY . /app/.  ✔ 18 ms
+
+[stage-0  9/15] RUN  caddy fmt --overwrite /assets/Caddyfile
+
+[stage-0  9/15] RUN  caddy fmt --overwrite /assets/Caddyfile  ✔ 140 ms
+
+[stage-0 10/15] COPY . /app/.
+
+[stage-0 10/15] COPY . /app/.  ✔ 23 ms
+
+[stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm pip install -r requirements.txt
+
+/bin/bash: line 1: pip: command not found
+
+✕ [stage-0 11/15] RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm pip install -r requirements.txt 
+process "/bin/bash -ol pipefail -c pip install -r requirements.txt" did not complete successfully: exit code: 127
+ 
+
+Dockerfile:26
+
+-------------------
+
+24 |     ENV NIXPACKS_PATH=/app/node_modules/.bin:$NIXPACKS_PATH
+
+25 |     COPY . /app/.
+
+26 | >>> RUN --mount=type=cache,id=s/60452bc7-bc65-4223-a304-317ad1176bb0-/root/npm,target=/root/.npm pip install -r requirements.txt
+
+27 |
+
+28 |     # build phase
+
+-------------------
+
+ERROR: failed to build: failed to solve: process "/bin/bash -ol pipefail -c pip install -r requirements.txt" did not complete successfully: exit code: 127
+
+Error: Docker build failed
