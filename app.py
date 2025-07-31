@@ -891,6 +891,23 @@ def health_check():
             'timestamp': datetime.now().isoformat()
         }), mimetype='application/json', status=500)
 
+@app.route('/test-connection', methods=['GET'])
+def test_connection():
+    """Simple test endpoint to verify frontend can reach backend"""
+    try:
+        logger.info("✅ Test connection endpoint called")
+        return jsonify({
+            'status': 'success',
+            'message': 'Frontend can reach backend!',
+            'timestamp': datetime.now().isoformat()
+        })
+    except Exception as e:
+        logger.error(f"Test connection failed: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'error': str(e)
+        }), 500
+
 @app.route('/debug/message-cache', methods=['GET'])
 def debug_message_cache():
     """Debug endpoint to check message deduplication cache status"""
