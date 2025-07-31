@@ -51,7 +51,7 @@ app.register_blueprint(api_bp)
 clients = []  # List of queues for each connected client
 
 # Heartbeat interval in seconds
-HEARTBEAT_INTERVAL = 15
+HEARTBEAT_INTERVAL = 30
 
 # Track last known mode for mode_changed events
 last_known_mode = None
@@ -62,9 +62,19 @@ message_deduplicator = deque(maxlen=300)
 
 def event_stream(client_queue):
     try:
+        start_time = time.time()
         while True:
-            event = client_queue.get()
-            yield f"data: {event}\n\n"
+            # Use a timeout to prevent indefinite blocking
+            try:
+                event = client_queue.get(timeout=25)  # 25 second timeout
+                yield f"data: {event}\n\n"
+            except queue.Empty:
+                # Check if we've been running too long (prevent worker timeout)
+                if time.time() - start_time > 100:  # 100 second max
+                    logging.info("[SSE] Connection timeout reached, closing stream")
+                    break
+                # Send heartbeat to keep connection alive
+                yield ":heartbeat\n\n"
     except GeneratorExit:
         pass  # Client disconnected
 
@@ -91,7 +101,12 @@ def sse_events():
         finally:
             cleanup()
     
-    headers = {'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'}
+    headers = {
+        'Content-Type': 'text/event-stream', 
+        'Cache-Control': 'no-cache', 
+        'Connection': 'keep-alive',
+        'X-Accel-Buffering': 'no'  # Disable nginx buffering
+    }
     return Response(generate(), headers=headers)
 
 # Heartbeat thread to send keep-alive to all clients
@@ -115,8 +130,11 @@ def heartbeat():
                     clients.remove(client)
             logging.info(f"[SSE] Heartbeat: Removed {len(to_remove)} disconnected client(s). Total clients: {len(clients)}")
 
-heartbeat_thread = threading.Thread(target=heartbeat, daemon=True)
-heartbeat_thread.start()
+# Start heartbeat thread only if not already running
+if not hasattr(app, 'heartbeat_started'):
+    heartbeat_thread = threading.Thread(target=heartbeat, daemon=True)
+    heartbeat_thread.start()
+    app.heartbeat_started = True
 
 def broadcast_event(event_data):
     logging.info(f"[SSE] Broadcasting event to {len(clients)} clients: {event_data}")
