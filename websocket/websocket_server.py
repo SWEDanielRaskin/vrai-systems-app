@@ -3,11 +3,11 @@ import websockets
 import json
 import logging
 import os
+import requests
 from dotenv import load_dotenv
 from realtime_service import OpenAIRealtimeService
 from database_service import DatabaseService
 from ai_summarizer import AISummarizer
-import requests
 
 # Load environment variables
 load_dotenv()
@@ -18,6 +18,9 @@ logger = logging.getLogger(__name__)
 
 # Track active sessions
 active_sessions = {}
+
+# Flask backend URL for database operations
+FLASK_BACKEND_URL = "https://vrai-systems-app-production.up.railway.app"
 
 async def handle_media_stream(websocket, path):
     """Handle WebSocket connection for media streaming between Telnyx and OpenAI"""
@@ -50,18 +53,17 @@ async def handle_media_stream(websocket, path):
                     caller_phone = start_data.get('from')  # Add this line
                     
                     # NEW: Initialize database and AI summarizer services
-                    db = DatabaseService()
-                    ai_summarizer = AISummarizer(database_service=db)
+                    # Use Flask backend API instead of local database
+                    logger.info("🔧 Using Flask backend for database operations")
                     
-                    # Initialize OpenAI Realtime Service with database and AI summarizer
+                    # Initialize OpenAI Realtime Service with Flask backend integration
                     realtime_service = OpenAIRealtimeService()
                     realtime_service.call_sid = call_sid
                     realtime_service.caller_phone_number = caller_phone
-                    realtime_service.db = db  # NEW: Pass database service
-                    realtime_service.ai_summarizer = ai_summarizer  # NEW: Pass AI summarizer
+                    realtime_service.flask_backend_url = FLASK_BACKEND_URL  # NEW: Pass Flask backend URL
                     
-                    # NEW: Set services properly for knowledge base access
-                    realtime_service.set_services(db, ai_summarizer)
+                    # NEW: Set services to use Flask backend
+                    realtime_service.set_services_for_flask_backend(FLASK_BACKEND_URL)
                     
                     active_sessions[call_sid] = realtime_service
                     

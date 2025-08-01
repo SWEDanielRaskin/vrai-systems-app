@@ -721,18 +721,20 @@ class OpenAIRealtimeService:
         logger.info(f"\U0001F4C5 Voice booking: {full_name} - {service_to_use} on {date} at {time}")
         logger.info(f"📞 Using phone: {actual_phone} (customer type: {self.booking_state_machine.customer_type})")
         
-        if not self.db or not [s['name'] for s in self.db.get_services()]:
+        # Use Flask backend for services check
+        services = self.get_services_from_flask()
+        if not services:
             return {"success": False, "message": self.no_services_fallback, "available_slots": []}
         
         self.customer_name = full_name
         
-        # For new customers, create customer record in database
-        if self.booking_state_machine.customer_type == "new" and self.db:
+        # For new customers, create customer record in Flask backend
+        if self.booking_state_machine.customer_type == "new":
             try:
                 # Format phone for database consistency
                 formatted_phone = self.appointment_service._format_phone_for_search(actual_phone)
-                self.db.create_customer(formatted_phone, full_name)
-                logger.info(f"✅ Created new customer record: {full_name} ({formatted_phone})")
+                self.create_customer_in_flask(formatted_phone, full_name)
+                logger.info(f"✅ Created new customer record in Flask backend: {full_name} ({formatted_phone})")
             except Exception as e:
                 logger.warning(f"⚠️ Could not create customer record: {str(e)}")
         
@@ -1140,16 +1142,17 @@ class OpenAIRealtimeService:
             # Sort transcript by time before saving
             self.conversation_transcript.sort(key=lambda x: x['time'])
 
-            # End call logging with transcript
-            success = self.db.end_call_logging(
-                call_control_id=self.call_sid,
-                transcript=self.conversation_transcript,
-                customer_name=self.customer_name,
-                status='completed'
-            )
+            # End call logging with transcript using Flask backend
+            call_data = {
+                'call_control_id': self.call_sid,
+                'transcript': self.conversation_transcript,
+                'customer_name': self.customer_name,
+                'status': 'completed'
+            }
+            success = self.end_call_in_flask(call_data)
             
             if success:
-                logger.info(f"✅ Call transcript saved to database: {len(self.conversation_transcript)} messages")
+                logger.info(f"✅ Call transcript saved to Flask backend: {len(self.conversation_transcript)} messages")
                 
                 # NEW: Generate AI summary and check for notifications
                 if self.ai_summarizer:
@@ -1166,8 +1169,8 @@ class OpenAIRealtimeService:
                         summary = result.get('summary', 'Unable to generate summary')
                         extracted_name = result.get('customer_name')
                         
-                        # Update call with summary
-                        self.db.update_call_summary(self.call_sid, summary)
+                        # Update call with summary using Flask backend
+                        self._call_flask_api(f'/api/calls/{self.call_sid}/summary', method='PUT', data={'summary': summary})
                         
                         # NEW: Use AI-extracted name if available
                         if extracted_name and extracted_name.lower() != "none":
@@ -1187,16 +1190,17 @@ class OpenAIRealtimeService:
                         )
                         
                         if notification:
-                            self.db.create_notification(
-                                notification['type'],
-                                notification['title'],
-                                notification['summary'],
-                                notification['phone'],
-                                notification['customer_name'],
-                                notification['conversation_type'],
-                                self.call_sid  # Use call_sid as conversation_id
-                            )
-                            logger.info(f"🚨 Notification created for call: {notification['title']}")
+                            notification_data = {
+                                'type': notification['type'],
+                                'title': notification['title'],
+                                'summary': notification['summary'],
+                                'phone': notification['phone'],
+                                'customer_name': notification['customer_name'],
+                                'conversation_type': notification['conversation_type'],
+                                'conversation_id': self.call_sid
+                            }
+                            self.create_notification_in_flask(notification_data)
+                            logger.info(f"🚨 Notification created in Flask backend: {notification['title']}")
                         else:
                             logger.info(f"✅ No notifications needed for call {self.call_sid}")
                             
@@ -1205,7 +1209,7 @@ class OpenAIRealtimeService:
                         import traceback
                         logger.error(f"❌ Full traceback: {traceback.format_exc()}")
             else:
-                logger.error("❌ Failed to save call transcript to database")
+                logger.error("❌ Failed to save call transcript to Flask backend")
                 
         except Exception as e:
             logger.error(f"❌ Error saving call transcript: {str(e)}")
@@ -2259,3 +2263,67 @@ class OpenAIRealtimeService:
                 "message": f"I want to make sure I understand - would you like to book your {up_next_service}, or would you prefer a different service today?",
                 "up_next_service": up_next_service
             }
+
+    def set_services_for_flask_backend(self, flask_backend_url):
+        """Set up services to use Flask backend API instead of local database"""
+        self.flask_backend_url = flask_backend_url
+        logger.info(f"🔧 Services configured to use Flask backend: {flask_backend_url}")
+        
+        # Create a simple API client for Flask backend calls
+        self.api_client = {
+            'base_url': flask_backend_url,
+            'headers': {'Content-Type': 'application/json'}
+        }
+    
+    def _call_flask_api(self, endpoint, method='GET', data=None):
+        """Make API call to Flask backend"""
+        try:
+            import requests
+            url = f"{self.flask_backend_url}{endpoint}"
+            if method == 'GET':
+                response = requests.get(url)
+            elif method == 'POST':
+                response = requests.post(url, json=data, headers=self.api_client['headers'])
+            elif method == 'PUT':
+                response = requests.put(url, json=data, headers=self.api_client['headers'])
+            elif method == 'DELETE':
+                response = requests.delete(url)
+            
+            if response.status_code == 200:
+                return response.json()
+            else:
+                logger.error(f"❌ Flask API call failed: {response.status_code} - {response.text}")
+                return None
+        except Exception as e:
+            logger.error(f"❌ Error calling Flask API: {str(e)}")
+            return None
+    
+    def get_services_from_flask(self):
+        """Get services from Flask backend"""
+        result = self._call_flask_api('/api/services')
+        if result and result.get('success'):
+            return result.get('services', [])
+        return []
+    
+    def create_customer_in_flask(self, phone, name):
+        """Create customer in Flask backend"""
+        data = {
+            'phone_number': phone,
+            'name': name
+        }
+        return self._call_flask_api('/api/customers', method='POST', data=data)
+    
+    def get_customer_from_flask(self, phone):
+        """Get customer from Flask backend"""
+        result = self._call_flask_api(f'/api/customers/{phone}')
+        if result and result.get('success'):
+            return result.get('customer')
+        return None
+    
+    def create_notification_in_flask(self, notification_data):
+        """Create notification in Flask backend"""
+        return self._call_flask_api('/api/notifications', method='POST', data=notification_data)
+    
+    def end_call_in_flask(self, call_data):
+        """End call logging in Flask backend"""
+        return self._call_flask_api('/api/calls/end', method='POST', data=call_data)

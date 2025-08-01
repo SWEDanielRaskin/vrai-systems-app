@@ -1583,6 +1583,95 @@ def debug_database_status():
     except Exception as e:
         return {"error": str(e)}, 500
 
+@app.route('/api/calls/end', methods=['POST'])
+def end_call():
+    """End call logging with transcript"""
+    try:
+        data = request.get_json()
+        call_control_id = data.get('call_control_id')
+        transcript = data.get('transcript', [])
+        customer_name = data.get('customer_name')
+        status = data.get('status', 'completed')
+        
+        success = db.end_call_logging(
+            call_control_id=call_control_id,
+            transcript=transcript,
+            customer_name=customer_name,
+            status=status
+        )
+        
+        return {"success": success}
+    except Exception as e:
+        logger.error(f"❌ Error ending call: {str(e)}")
+        return {"success": False, "error": str(e)}, 500
+
+@app.route('/api/calls/<call_id>/summary', methods=['PUT'])
+def update_call_summary(call_id):
+    """Update call summary"""
+    try:
+        data = request.get_json()
+        summary = data.get('summary')
+        
+        success = db.update_call_summary(call_id, summary)
+        return {"success": success}
+    except Exception as e:
+        logger.error(f"❌ Error updating call summary: {str(e)}")
+        return {"success": False, "error": str(e)}, 500
+
+@app.route('/api/customers', methods=['POST'])
+def create_customer():
+    """Create a new customer"""
+    try:
+        data = request.get_json()
+        phone_number = data.get('phone_number')
+        name = data.get('name')
+        
+        success = db.create_customer(phone_number, name)
+        return {"success": success}
+    except Exception as e:
+        logger.error(f"❌ Error creating customer: {str(e)}")
+        return {"success": False, "error": str(e)}, 500
+
+@app.route('/api/customers/<phone>', methods=['GET'])
+def get_customer(phone):
+    """Get customer by phone number"""
+    try:
+        customer = db.get_customer(phone)
+        if customer:
+            return {"success": True, "customer": customer}
+        else:
+            return {"success": False, "error": "Customer not found"}, 404
+    except Exception as e:
+        logger.error(f"❌ Error getting customer: {str(e)}")
+        return {"success": False, "error": str(e)}, 500
+
+@app.route('/api/notifications', methods=['POST'])
+def create_notification():
+    """Create a new notification"""
+    try:
+        data = request.get_json()
+        notification_type = data.get('type')
+        title = data.get('title')
+        summary = data.get('summary')
+        phone = data.get('phone')
+        customer_name = data.get('customer_name')
+        conversation_type = data.get('conversation_type')
+        conversation_id = data.get('conversation_id')
+        
+        success = db.create_notification(
+            notification_type,
+            title,
+            summary,
+            phone,
+            customer_name,
+            conversation_type,
+            conversation_id
+        )
+        return {"success": success}
+    except Exception as e:
+        logger.error(f"❌ Error creating notification: {str(e)}")
+        return {"success": False, "error": str(e)}, 500
+
 if __name__ == '__main__':
     # Start Flask app (HTTP only)
     logger.info("🚀 Starting Flask HTTP server on port 5000")
