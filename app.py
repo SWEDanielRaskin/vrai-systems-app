@@ -1290,12 +1290,27 @@ def list_services():
     """Return all services as JSON"""
     try:
         logger.info("🔧 Fetching services from database...")
+        logger.info(f"🔧 Database file: {db.db_file}")
+        logger.info(f"🔧 Database object: {type(db)}")
+        
+        # Test database connection
+        import sqlite3
+        conn = sqlite3.connect(db.db_file)
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='services'")
+        table_exists = cursor.fetchone()
+        logger.info(f"🔧 Services table exists: {table_exists}")
+        conn.close()
+        
         services = db.get_services()
         logger.info(f"✅ Found {len(services)} services: {services}")
         return {"success": True, "services": services}
     except Exception as e:
         logger.error(f"❌ Error listing services: {str(e)}")
-        logger.error(f"❌ Error details: {type(e).__name__}: {str(e)}")
+        logger.error(f"❌ Error type: {type(e).__name__}")
+        logger.error(f"❌ Error traceback: {e.__traceback__}")
+        import traceback
+        logger.error(f"❌ Full traceback: {traceback.format_exc()}")
         return {"success": False, "error": str(e)}, 500
 
 @app.route('/api/services', methods=['POST'])
