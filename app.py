@@ -1618,3 +1618,8 @@ if __name__ == '__main__':
     run_flask_and_websocket()
 else:
     logger.info("📦 App.py imported as module - not starting servers automatically")
+    # For Railway deployment, we need to start servers even when imported
+    import os
+    if os.environ.get('RAILWAY_ENVIRONMENT'):
+        logger.info("🚀 Railway environment detected - starting servers...")
+        run_flask_and_websocket()
