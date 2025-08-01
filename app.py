@@ -11,6 +11,7 @@ import json
 import time
 import logging
 import asyncio
+import websockets
 from datetime import datetime
 import pytz
 from sms_service import SMSService
@@ -552,8 +553,8 @@ def start_ai_streaming(call_control_id):
             "Content-Type": "application/json"
         }
         
-        # Get the WebSocket URL from environment or use the one from your config
-        websocket_stream_url = "wss://16d3c9815674.ngrok-free.app"  # Update this to your actual ngrok URL
+        # Get the WebSocket URL from environment or use Railway URL
+        websocket_stream_url = "wss://vrai-systems-app-production.up.railway.app:8080"  # Railway WebSocket URL
         
         streaming_data = {
             "stream_url": websocket_stream_url,
@@ -1554,14 +1555,47 @@ def debug_call_events():
         logger.error(f"❌ Error in debug_call_events: {str(e)}")
         return Response(status=500)
 
-if __name__ == '__main__':
-    # Start Flask app (HTTP only)
+# WebSocket server integration
+async def start_websocket_server():
+    """Start the WebSocket server for Telnyx media streaming"""
+    logger.info("🚀 Starting WebSocket server on port 8080...")
+    
+    # Import the WebSocket handler from websocket_server.py
+    from websocket_server import handle_media_stream
+    
+    # Start WebSocket server
+    server = await websockets.serve(
+        handle_media_stream,
+        "0.0.0.0",
+        8080
+    )
+    
+    logger.info("✅ WebSocket server running on ws://0.0.0.0:8080")
+    logger.info("🚀 WebSocket server deployed and ready for Telnyx connections!")
+    
+    # Keep server running
+    await server.wait_closed()
+
+def run_flask_and_websocket():
+    """Run both Flask and WebSocket servers"""
+    import threading
+    
+    # Start WebSocket server in a separate thread
+    def run_websocket():
+        asyncio.run(start_websocket_server())
+    
+    websocket_thread = threading.Thread(target=run_websocket, daemon=True)
+    websocket_thread.start()
+    
+    # Start Flask app
     logger.info("🚀 Starting Flask HTTP server on port 5000")
-    logger.info("📞 Remember to also run: python websocket_server.py")
     
     # Show current business hours status
     is_business_hours = get_business_hours_status()
     mode = "BUSINESS HOURS (SMS for missed calls)" if is_business_hours else "AFTER HOURS (Voice AI active)"
     logger.info(f"🕐 Current mode: {mode}")
     
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000, host='0.0.0.0')
+
+if __name__ == '__main__':
+    run_flask_and_websocket()
