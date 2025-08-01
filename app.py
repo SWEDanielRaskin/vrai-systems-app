@@ -50,7 +50,7 @@ app.register_blueprint(api_bp)
 # --- SSE Implementation ---
 clients = []  # List of queues for each connected client
 
-# Heartbeat interval in seconds
+# Heartbeat interval in seconds (reduced to prevent timeouts)
 HEARTBEAT_INTERVAL = 15
 
 # Track last known mode for mode_changed events
@@ -62,9 +62,28 @@ message_deduplicator = deque(maxlen=300)
 
 def event_stream(client_queue):
     try:
+        start_time = time.time()
+        last_activity = time.time()
+        
         while True:
-            event = client_queue.get()
-            yield f"data: {event}\n\n"
+            # Use a shorter timeout to prevent indefinite blocking
+            try:
+                event = client_queue.get(timeout=15)  # 15 second timeout (reduced from 25)
+                yield f"data: {event}\n\n"
+                last_activity = time.time()
+            except queue.Empty:
+                current_time = time.time()
+                
+                # Check if we've been running too long (prevent worker timeout)
+                if current_time - start_time > 50:  # 50 second max (reduced from 100)
+                    logging.info("[SSE] Connection timeout reached, closing stream")
+                    break
+                
+                # Send keep-alive comment every 10 seconds to prevent browser timeout
+                if current_time - last_activity > 10:
+                    yield ": keep-alive\n\n"
+                    last_activity = current_time
+                    logging.info("[SSE] Sent keep-alive ping")
     except GeneratorExit:
         pass  # Client disconnected
 
@@ -91,7 +110,15 @@ def sse_events():
         finally:
             cleanup()
     
-    headers = {'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'}
+    headers = {
+        'Content-Type': 'text/event-stream', 
+        'Cache-Control': 'no-cache', 
+        'Connection': 'keep-alive',
+        'X-Accel-Buffering': 'no',  # Disable nginx buffering
+        'X-Accel-Buffering': 'no',  # Disable nginx buffering for Railway
+        'Access-Control-Allow-Origin': '*',  # Allow CORS for SSE
+        'Access-Control-Allow-Headers': 'Cache-Control'
+    }
     return Response(generate(), headers=headers)
 
 # Heartbeat thread to send keep-alive to all clients
@@ -115,8 +142,11 @@ def heartbeat():
                     clients.remove(client)
             logging.info(f"[SSE] Heartbeat: Removed {len(to_remove)} disconnected client(s). Total clients: {len(clients)}")
 
-heartbeat_thread = threading.Thread(target=heartbeat, daemon=True)
-heartbeat_thread.start()
+# Start heartbeat thread only if not already running
+if not hasattr(app, 'heartbeat_started'):
+    heartbeat_thread = threading.Thread(target=heartbeat, daemon=True)
+    heartbeat_thread.start()
+    app.heartbeat_started = True
 
 def broadcast_event(event_data):
     logging.info(f"[SSE] Broadcasting event to {len(clients)} clients: {event_data}")
