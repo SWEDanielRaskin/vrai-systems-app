@@ -133,20 +133,17 @@ async def handle_media_stream(websocket, path):
 
 async def main():
     """Start the WebSocket server"""
-    # Get port from environment variable (for Railway)
-    port = int(os.getenv('PORT', 8080))
-    
-    logger.info(f"Starting WebSocket server on port {port}...")
+    logger.info("Starting WebSocket server on port 8080...")
     
     # Start WebSocket server
     server = await websockets.serve(
         handle_media_stream,
         "0.0.0.0",
-        port
+        8080
     )
     
-    logger.info(f"WebSocket server running on ws://0.0.0.0:{port}")
-    logger.info("🚀 WebSocket server deployed and ready for Telnyx connections!")
+    logger.info("WebSocket server running on ws://0.0.0.0:8080")
+    logger.info("Make sure to expose this with: ngrok http 8080")
     
     # Keep server running
     await server.wait_closed()
