@@ -1540,8 +1540,9 @@ def debug_database_status():
         file_exists = os.path.exists(db_file)
         file_size = os.path.getsize(db_file) if file_exists else 0
         
-        # Get table list
-        conn = db.get_connection()
+        # Get table list using sqlite3 directly
+        import sqlite3
+        conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
         tables = [row[0] for row in cursor.fetchall()]
