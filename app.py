@@ -1527,6 +1527,46 @@ def debug_call_events():
         logger.error(f"❌ Error in debug_call_events: {str(e)}")
         return Response(status=500)
 
+@app.route('/debug/database-status', methods=['GET'])
+def debug_database_status():
+    """Check database status and list all tables"""
+    try:
+        from database_service import DatabaseService
+        db = DatabaseService()
+        
+        # Get database file info
+        import os
+        db_file = db.db_file
+        file_exists = os.path.exists(db_file)
+        file_size = os.path.getsize(db_file) if file_exists else 0
+        
+        # Get table list
+        conn = db.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = [row[0] for row in cursor.fetchall()]
+        
+        # Get row counts for each table
+        table_counts = {}
+        for table in tables:
+            cursor.execute(f"SELECT COUNT(*) FROM {table}")
+            count = cursor.fetchone()[0]
+            table_counts[table] = count
+        
+        conn.close()
+        
+        return {
+            "database_file": db_file,
+            "file_exists": file_exists,
+            "file_size_bytes": file_size,
+            "tables": tables,
+            "table_counts": table_counts,
+            "status": "healthy" if file_exists else "missing"
+        }
+        
+    except Exception as e:
+        return {"error": str(e)}, 500
+
 if __name__ == '__main__':
     # Start Flask app (HTTP only)
     logger.info("🚀 Starting Flask HTTP server on port 5000")
