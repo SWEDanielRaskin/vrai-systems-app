@@ -1560,32 +1560,45 @@ async def start_websocket_server():
     """Start the WebSocket server for Telnyx media streaming"""
     logger.info("🚀 Starting WebSocket server on port 8080...")
     
-    # Import the WebSocket handler from websocket_server.py
-    from websocket_server import handle_media_stream
-    
-    # Start WebSocket server
-    server = await websockets.serve(
-        handle_media_stream,
-        "0.0.0.0",
-        8080
-    )
-    
-    logger.info("✅ WebSocket server running on ws://0.0.0.0:8080")
-    logger.info("🚀 WebSocket server deployed and ready for Telnyx connections!")
-    
-    # Keep server running
-    await server.wait_closed()
+    try:
+        # Import the WebSocket handler from websocket_server.py
+        from websocket_server import handle_media_stream
+        logger.info("✅ Successfully imported handle_media_stream from websocket_server.py")
+        
+        # Start WebSocket server
+        server = await websockets.serve(
+            handle_media_stream,
+            "0.0.0.0",
+            8080
+        )
+        
+        logger.info("✅ WebSocket server running on ws://0.0.0.0:8080")
+        logger.info("🚀 WebSocket server deployed and ready for Telnyx connections!")
+        
+        # Keep server running
+        await server.wait_closed()
+        
+    except Exception as e:
+        logger.error(f"❌ Error starting WebSocket server: {str(e)}")
+        raise e
 
 def run_flask_and_websocket():
     """Run both Flask and WebSocket servers"""
     import threading
     
+    logger.info("🔄 Initializing Flask and WebSocket servers...")
+    
     # Start WebSocket server in a separate thread
     def run_websocket():
-        asyncio.run(start_websocket_server())
+        try:
+            logger.info("🔄 Starting WebSocket thread...")
+            asyncio.run(start_websocket_server())
+        except Exception as e:
+            logger.error(f"❌ Error in WebSocket thread: {str(e)}")
     
     websocket_thread = threading.Thread(target=run_websocket, daemon=True)
     websocket_thread.start()
+    logger.info("✅ WebSocket thread started")
     
     # Start Flask app
     logger.info("🚀 Starting Flask HTTP server on port 5000")
@@ -1597,5 +1610,11 @@ def run_flask_and_websocket():
     
     app.run(debug=False, port=5000, host='0.0.0.0')
 
+# Add explicit startup logging
+logger.info("🔧 App.py loaded - checking if this is the main module...")
+
 if __name__ == '__main__':
+    logger.info("🚀 Main module detected - starting Flask and WebSocket servers...")
     run_flask_and_websocket()
+else:
+    logger.info("📦 App.py imported as module - not starting servers automatically")

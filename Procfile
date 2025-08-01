@@ -1,1 +1,1 @@
-web: python app.py
+web: python -c "from app import run_flask_and_websocket; run_flask_and_websocket()"
