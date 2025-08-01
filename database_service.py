@@ -1550,13 +1550,32 @@ class DatabaseService:
 
     def get_services(self):
         """Retrieve all services from the database"""
-        conn = sqlite3.connect(self.db_file)
-        cursor = conn.cursor()
-        cursor.execute('SELECT id, name, price, duration, requires_deposit, deposit_amount, description, source_doc_id FROM services')
-        rows = cursor.fetchall()
-        conn.close()
-        columns = ['id', 'name', 'price', 'duration', 'requires_deposit', 'deposit_amount', 'description', 'source_doc_id']
-        return [dict(zip(columns, row)) for row in rows]
+        try:
+            logger.info(f"🔧 Getting services from database: {self.db_file}")
+            conn = sqlite3.connect(self.db_file)
+            cursor = conn.cursor()
+            
+            # Check if services table exists
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='services'")
+            table_exists = cursor.fetchone()
+            if not table_exists:
+                logger.error("❌ Services table does not exist!")
+                conn.close()
+                return []
+            
+            cursor.execute('SELECT id, name, price, duration, requires_deposit, deposit_amount, description, source_doc_id FROM services')
+            rows = cursor.fetchall()
+            conn.close()
+            
+            columns = ['id', 'name', 'price', 'duration', 'requires_deposit', 'deposit_amount', 'description', 'source_doc_id']
+            services = [dict(zip(columns, row)) for row in rows]
+            logger.info(f"✅ Retrieved {len(services)} services from database")
+            return services
+            
+        except Exception as e:
+            logger.error(f"❌ Error in get_services: {str(e)}")
+            logger.error(f"❌ Error type: {type(e).__name__}")
+            return []
 
     def get_service_by_id(self, service_id):
         """Retrieve a single service by its ID"""
