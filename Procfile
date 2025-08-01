@@ -1,2 +1,2 @@
-web: gunicorn app:app --timeout 60 --keep-alive 2 --worker-class sync --workers 1 --max-requests 1000 --max-requests-jitter 100 --preload
 websocket: python websocket_server.py 
+web: gunicorn app:app --timeout 60 --keep-alive 2 --worker-class sync --workers 1 --max-requests 1000 --max-requests-jitter 100 --preload
